@@ -1,328 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alex Sklenár Photography</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #000;
-      color: #fff;
-      line-height: 1.6;
-      padding-top: 80px;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      border-bottom: 1px solid #333;
-      flex-wrap: wrap;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: #000;
-      transition: transform 0.3s ease-in-out;
-    }
-    header.hide {
-      transform: translateY(-100%);
-    }
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-    }
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #fff;
-    }
-    nav {
-      display: flex;
-      gap: 15px;
-    }
-    nav a {
-      color: #ccc;
-      font-size: 0.9rem;
-      text-decoration: none;
-    }
-    nav a:hover {
-      color: #fff;
-    }
-    @media (max-width: 600px) {
-      .menu-toggle {
-        display: block;
-      }
-      nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #111;
-        margin-top: 10px;
-        padding: 10px 0;
-      }
-      nav.active {
-        display: flex;
-      }
-      nav a {
-        margin: 10px 0;
-        text-align: center;
-      }
-    }
-    .hero {
-      text-align: center;
-      padding: 60px 20px 30px;
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      padding: 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    @media (max-width: 900px) {
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 600px) {
-      .gallery {
-        grid-template-columns: 1fr;
-      }
-    }
-    .gallery-item {
-      background: #111;
-      border-radius: 10px;
-      overflow: hidden;
-      transition: transform 0.2s ease-in-out;
-    }
-    .gallery-item:hover {
-      transform: scale(1.03);
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 350px;
-      object-fit: cover;
-    }
-    .gallery-item h3 {
-      padding: 15px 20px;
-      font-size: 1.4rem;
-    }
-    .gallery-item a {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-    .about, .contact {
-      text-align: center;
-      padding: 60px 20px;
-      background: #111;
-    }
-    .about a {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-    .about div {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      background: #1a1a1a;
-      border-radius: 8px;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s ease;
-    }
-    .about div:hover {
-      background: #222;
-    }
-    .about h2 {
-      margin-bottom: 10px;
-    }
-    .about p {
-      color: #aaa;
-      max-height: 3.6em;
-      line-height: 1.8em;
-      overflow: hidden;
-      position: relative;
-    }
-    .about p span {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 100%;
-      height: 1.5em;
-      background: linear-gradient(to top, #1a1a1a, transparent);
-    }
-    .about .read-more {
-      margin-top: 10px;
-      color: #fff;
-      text-decoration: underline;
-    }
-    .contact p {
-      color: #aaa;
-      max-width: 600px;
-      margin: 10px auto;
-    }
-    .contact-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-    .contact-buttons a {
-      background: #fff;
-      color: #000;
-      padding: 14px 28px;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #666;
-    }
-  .lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);display:none;align-items:center;justify-content:center;z-index:2000;cursor:pointer}
-.lightbox img{max-width:95%;max-height:95%;border-radius:6px}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery | Alex Sklenár Photography</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#000;
+color:#fff;
+}
+
+/* HEADER (same as main site) */
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+border-bottom:1px solid #333;
+flex-wrap:wrap;
+position:fixed;
+top:0;
+width:100%;
+background:#000;
+z-index:1000;
+transition:transform .3s;
+}
+
+header.hide{transform:translateY(-100%)}
+
+.logo{font-size:1.5rem;font-weight:800}
+
+.menu-toggle{display:none;font-size:1.5rem;cursor:pointer;color:#fff}
+
+nav{display:flex;gap:15px}
+
+nav a{color:#ccc;font-size:.9rem;text-decoration:none}
+
+nav a:hover{color:#fff}
+
+@media(max-width:600px){
+.menu-toggle{display:block}
+nav{
+display:none;
+flex-direction:column;
+width:100%;
+background:#111;
+margin-top:10px;
+padding:10px 0
+}
+nav.active{display:flex}
+nav a{margin:10px 0;text-align:center}
+}
+
+/* GALLERY ONLY CONTENT */
+.gallery{
+column-count:3;
+column-gap:25px;
+max-width:1200px;
+margin:120px auto 60px auto;
+padding:40px;
+}
+
+.gallery img{
+width:100%;
+margin-bottom:25px;
+border-radius:8px;
+break-inside:avoid;
+transition:.2s;
+cursor:pointer
+}
+
+.gallery img:hover{transform:scale(1.02)}
+
+@media(max-width:900px){
+.gallery{column-count:2}
+}
+
+@media(max-width:600px){
+.gallery{column-count:1}
+}
+
+/* LIGHTBOX */
+.lightbox{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:2000;
+}
+
+.lightbox img{
+max-width:95%;
+max-height:95%;
+border-radius:6px
+}
+
+.arrow{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+font-size:40px;
+color:#fff;
+cursor:pointer;
+user-select:none;
+padding:20px;
+}
+
+.arrow.left{left:10px}
+.arrow.right{right:10px}
+
+/* FOOTER (same as main site) */
+footer{
+text-align:center;
+padding:20px;
+font-size:.9rem;
+color:#666;
+border-top:1px solid #222
+}
 </style>
 </head>
+
 <body>
-  <header id="header">
-    <div class="logo">Alex Sklenár</div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <nav id="main-nav">
-      <a href="#portfolio">Portfolio</a>
-      <a href="about.html">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <h1>Portfolio</h1>
-  </section>
+<header id="header">
+<div class="logo">Alex Sklenár</div>
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+<nav id="main-nav">
+<a href="index.html">Portfolio</a>
+<a href="about.html">About</a>
+<a href="index.html#contact">Contact</a>
+</nav>
+</header>
 
-  <section id="portfolio" class="gallery">
-    <div class="gallery-item">
-      <a href="concerts.html">
-        <img src="photos/concerts/cover.jpg" alt="Concerts">
-        <h3>Concerts</h3>
-      </a>
-    </div>
-    <div class="gallery-item">
-      <a href="modeling.html">
-        <img src="photos/modeling/cover.jpg" alt="Modeling">
-        <h3>Modeling</h3>
-      </a>
-    </div>
-    <div class="gallery-item">
-      <a href="events.html">
-        <img src="photos/events/cover.jpg" alt="Events">
-        <h3>Events</h3>
-      </a>
-    </div>
-    <div class="gallery-item">
-      <a href="cars.html">
-        <img src="photos/cars/cover.jpg" alt="Cars">
-        <h3>Cars</h3>
-      </a>
-    </div>
-    <div class="gallery-item">
-      <a href="sports.html">
-        <img src="photos/sports/cover.jpg" alt="Sports">
-        <h3>Sports</h3>
-      </a>
-    </div>
-    <div class="gallery-item">
-      <a href="travel.html">
-        <img src="photos/travel/cover.jpg" alt="Travel">
-        <h3>Travel</h3>
-      </a>
-    </div>
-    <div class="gallery-item">
-      <a href="slovakia.html">
-        <img src="photos/slovakia/cover.jpg" alt="Slovakia">
-        <h3>Slovakia</h3>
-      </a>
-    </div>
-  </section>
+<!-- ONLY GALLERY IN BODY -->
+<section class="gallery">
 
-  <section id="about" class="about">
-    <a href="about.html">
-      <div>
-        <h2>About Me</h2>
-        <p>
-          I'm Alex Sklenár, a photographer capturing energy and emotion in every frame. From roaring concerts to serene landscapes, I chase moments that tell a story.
-          <span></span>
-        </p>
-        <p class="read-more">Read more</p>
-      </div>
-    </a>
-  </section>
+<img src="photos/concerts/1.jpg">
+<img src="photos/concerts/2.jpg">
+<img src="photos/concerts/3.jpg">
+<img src="photos/concerts/4.jpg">
+<img src="photos/concerts/5.jpg">
+<img src="photos/concerts/6.jpg">
 
-  <section id="contact" class="contact">
-    <h2>Let's Work Together</h2>
-    <p>Have an idea or event you'd like captured? Reach out and let's make it happen.</p>
-    <p style="margin-top: 20px; color: #fff; font-weight: bold;">alexisklenar@gmail.com</p>
-    <div class="contact-buttons">
-      <a href="https://www.instagram.com/alexinosklenar/" target="_blank">Instagram</a>
-    </div>
-  </section>
-
-  <footer>
-    &copy; <script>document.write(new Date().getFullYear())</script> Alex Sklenár Photography. All rights reserved.
-  </footer>
+</section>
 
 <div id="lightbox" class="lightbox">
-  <img id="lightbox-img" src="">
+<span class="arrow left" id="prev">❮</span>
+<img id="lightbox-img" src="">
+<span class="arrow right" id="next">❯</span>
 </div>
 
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById('main-nav');
-      nav.classList.toggle('active');
-    }
+<footer>
+© <script>document.write(new Date().getFullYear())</script> Alex Sklenár Photography
+</footer>
 
-    let lastScroll = 0;
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      if (currentScroll < lastScroll - 10) {
-        header.classList.remove('hide');
-      } else if (currentScroll > lastScroll + 10) {
-        header.classList.add('hide');
-      }
-      lastScroll = currentScroll;
-    });
-      const lightbox=document.getElementById('lightbox');
-    const lightboxImg=document.getElementById('lightbox-img');
+<script>
 
-    document.querySelectorAll('.gallery img').forEach(img=>{
-      img.addEventListener('click',()=>{
-        lightbox.style.display='flex';
-        lightboxImg.src=img.src;
-      });
-    });
+function toggleMenu(){
+document.getElementById('main-nav').classList.toggle('active');
+}
 
-    lightbox.addEventListener('click',()=>{
-      lightbox.style.display='none';
-    });
+let lastScroll=0;
+const header=document.getElementById('header');
 
-  </script>
+window.addEventListener('scroll',()=>{
+const current=window.pageYOffset;
+if(current<lastScroll-10){header.classList.remove('hide')}else if(current>lastScroll+10){header.classList.add('hide')}
+lastScroll=current;
+});
+
+const images=[...document.querySelectorAll('.gallery img')];
+const lightbox=document.getElementById('lightbox');
+const lightboxImg=document.getElementById('lightbox-img');
+const nextBtn=document.getElementById('next');
+const prevBtn=document.getElementById('prev');
+
+let currentIndex=0;
+
+images.forEach((img,i)=>{
+img.addEventListener('click',()=>{
+currentIndex=i;
+openImage();
+});
+});
+
+function openImage(){
+lightbox.style.display='flex';
+lightboxImg.src=images[currentIndex].src;
+}
+
+function nextImage(){
+currentIndex=(currentIndex+1)%images.length;
+openImage();
+}
+
+function prevImage(){
+currentIndex=(currentIndex-1+images.length)%images.length;
+openImage();
+}
+
+nextBtn.onclick=(e)=>{e.stopPropagation();nextImage();}
+prevBtn.onclick=(e)=>{e.stopPropagation();prevImage();}
+
+lightbox.addEventListener('click',()=>{lightbox.style.display='none'});
+
+document.addEventListener('keydown',(e)=>{
+if(lightbox.style.display==='flex'){
+if(e.key==='ArrowRight')nextImage();
+if(e.key==='ArrowLeft')prevImage();
+if(e.key==='Escape')lightbox.style.display='none';
+}
+});
+
+let touchStartX=0;
+let touchEndX=0;
+
+lightbox.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX});
+lightbox.addEventListener('touchend',e=>{
+touchEndX=e.changedTouches[0].screenX;
+handleSwipe();
+});
+
+function handleSwipe(){
+if(touchEndX<touchStartX-50)nextImage();
+if(touchEndX>touchStartX+50)prevImage();
+}
+
+</script>
+
 </body>
 </html>
-
