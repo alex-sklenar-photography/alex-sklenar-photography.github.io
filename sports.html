@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Šport | Alex Sklenár Photography</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/png" href="logo-bez.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#000;
+color:#fff;
+line-height:1.6;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+border-bottom:1px solid #333;
+flex-wrap:wrap;
+position:fixed;
+top:0;
+width:100%;
+background:#000;
+z-index:1000;
+transition:transform .3s;
+}
+
+header.hide{
+transform:translateY(-100%);
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:1.5rem;
+font-weight:800;
+text-decoration:none;
+color:#fff;
+}
+
+.logo img{
+height:28px;
+width:auto;
+}
+
+.menu-toggle{
+display:none;
+font-size:1.5rem;
+cursor:pointer;
+color:#fff;
+}
+
+nav{
+display:flex;
+gap:15px;
+}
+
+nav a{
+color:#ccc;
+font-size:.9rem;
+text-decoration:none;
+}
+
+nav a:hover{
+color:#fff;
+}
+
+@media(max-width:600px){
+
+.menu-toggle{display:block}
+
+nav{
+display:none;
+flex-direction:column;
+width:100%;
+background:#111;
+margin-top:10px;
+padding:10px 0;
+}
+
+nav.active{display:flex}
+
+nav a{
+margin:10px 0;
+text-align:center;
+}
+
+}
+
+/* TITLE */
+
+.hero{
+text-align:center;
+padding:140px 20px 40px;
+}
+
+.hero h1{
+font-size:2.5rem;
+font-weight:800;
+}
+
+/* CATEGORY GRID */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+padding:40px;
+max-width:1200px;
+margin:0 auto;
+}
+
+@media(max-width:900px){
+.gallery{grid-template-columns:repeat(2,1fr);}
+}
+
+@media(max-width:600px){
+.gallery{grid-template-columns:1fr;}
+}
+
+.gallery-item{
+background:#111;
+border-radius:10px;
+overflow:hidden;
+transition:transform .2s ease-in-out;
+}
+
+.gallery-item:hover{
+transform:scale(1.03);
+}
+
+.gallery-item img{
+width:100%;
+height:350px;
+object-fit:cover;
+}
+
+.gallery-item h3{
+padding:15px 20px;
+font-size:1.4rem;
+}
+
+.gallery-item a{
+text-decoration:none;
+color:inherit;
+display:block;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:20px;
+font-size:.9rem;
+color:#666;
+border-top:1px solid #222;
+margin-top:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header id="header">
+
+<a href="index.html" class="logo">
+  <img src="logo.png" alt="Logo">
+  Alex Sklenár
+</a>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<nav id="main-nav">
+<a href="index.html">Portfolio</a>
+<a href="about.html">About</a>
+<a href="index.html#contact">Contact</a>
+</nav>
+
+</header>
+
+
+<section class="hero">
+<h1>Šport</h1>
+</section>
+
+
+<section class="gallery">
+
+<div class="gallery-item">
+<a href="hokej.html">
+<img src="photos/sports/hockey/cover.jpg" alt="Hokej">
+<h3>Hokej</h3>
+</a>
+</div>
+
+<div class="gallery-item">
+<a href="volejbal.html">
+<img src="photos/sports/volleyball/cover.jpg" alt="Volejbal">
+<h3>Volejbal</h3>
+</a>
+</div>
+
+<div class="gallery-item">
+<a href="freeski.html">
+<img src="photos/sports/freeski/cover.jpg" alt="Freeski">
+<h3>Freeski</h3>
+</a>
+</div>
+
+</section>
+
+
+<footer>
+© <script>document.write(new Date().getFullYear())</script> Alex Sklenár Photography
+</footer>
+
+
+<script>
+
+function toggleMenu(){
+const nav=document.getElementById('main-nav');
+nav.classList.toggle('active');
+}
+
+let lastScroll=0;
+const header=document.getElementById('header');
+
+window.addEventListener('scroll',()=>{
+
+const current=window.pageYOffset;
+
+if(current<lastScroll-10){
+header.classList.remove('hide');
+}
+
+else if(current>lastScroll+10){
+header.classList.add('hide');
+}
+
+lastScroll=current;
+
+});
+
+</script>
+
+</body>
+</html>
