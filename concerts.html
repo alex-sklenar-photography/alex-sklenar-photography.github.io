@@ -151,16 +151,7 @@ border-top:1px solid #222
 <div class="page-title">Koncerty</div>
 
 <!-- ONLY GALLERY IN BODY -->
-<section class="gallery">
-
-<img src="photos/concerts/1.jpg">
-<img src="photos/concerts/2.jpg">
-<img src="photos/concerts/3.jpg">
-<img src="photos/concerts/4.jpg">
-<img src="photos/concerts/5.jpg">
-<img src="photos/concerts/6.jpg">
-
-</section>
+<section class="gallery" id="gallery"></section>
 
 <div id="lightbox" class="lightbox">
 <span class="arrow left" id="prev">❮</span>
@@ -187,7 +178,20 @@ if(current<lastScroll-10){header.classList.remove('hide')}else if(current>lastSc
 lastScroll=current;
 });
 
-const images=[...document.querySelectorAll('.gallery img')];
+// AUTOMATIC GALLERY LOADER
+const folder = "photos/concerts/"; // change folder for other pages
+const imageCount = 100; // change to how many photos you have
+
+const gallery = document.getElementById("gallery");
+
+for (let i = 1; i <= imageCount; i++) {
+  const img = document.createElement("img");
+  img.src = folder + i + ".jpg";
+  gallery.appendChild(img);
+}
+
+// LIGHTBOX SYSTEM
+let images = [];
 const lightbox=document.getElementById('lightbox');
 const lightboxImg=document.getElementById('lightbox-img');
 const nextBtn=document.getElementById('next');
@@ -195,26 +199,30 @@ const prevBtn=document.getElementById('prev');
 
 let currentIndex=0;
 
-images.forEach((img,i)=>{
-img.addEventListener('click',()=>{
-currentIndex=i;
-openImage();
-});
-});
+function refreshImages(){
+  images=[...document.querySelectorAll('.gallery img')];
+
+  images.forEach((img,i)=>{
+    img.addEventListener('click',()=>{
+      currentIndex=i;
+      openImage();
+    });
+  });
+}
 
 function openImage(){
-lightbox.style.display='flex';
-lightboxImg.src=images[currentIndex].src;
+  lightbox.style.display='flex';
+  lightboxImg.src=images[currentIndex].src;
 }
 
 function nextImage(){
-currentIndex=(currentIndex+1)%images.length;
-openImage();
+  currentIndex=(currentIndex+1)%images.length;
+  openImage();
 }
 
 function prevImage(){
-currentIndex=(currentIndex-1+images.length)%images.length;
-openImage();
+  currentIndex=(currentIndex-1+images.length)%images.length;
+  openImage();
 }
 
 nextBtn.onclick=(e)=>{e.stopPropagation();nextImage();}
@@ -236,13 +244,12 @@ let touchEndX=0;
 lightbox.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX});
 lightbox.addEventListener('touchend',e=>{
 touchEndX=e.changedTouches[0].screenX;
-handleSwipe();
-});
-
-function handleSwipe(){
 if(touchEndX<touchStartX-50)nextImage();
 if(touchEndX>touchStartX+50)prevImage();
-}
+});
+
+// initialize gallery after images load
+setTimeout(refreshImages,100);
 
 </script>
 
