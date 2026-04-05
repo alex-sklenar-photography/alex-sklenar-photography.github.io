@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Zatah | Alex Sklenár Foto</title>
+
+<link rel="icon" type="image/png" href="logo-bez.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery-bundle.min.css">
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#000;
+color:#fff;
+line-height:1.6;
+padding-top:80px;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+border-bottom:1px solid #333;
+flex-wrap:wrap;
+position:fixed;
+top:0;
+width:100%;
+z-index:1000;
+background:#000;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:1.5rem;
+font-weight:800;
+text-decoration:none;
+color:#fff;
+}
+
+.logo img{
+height:28px;
+}
+
+.menu-toggle{
+display:none;
+font-size:1.5rem;
+cursor:pointer;
+color:#fff;
+}
+
+nav{
+display:flex;
+gap:15px;
+}
+
+nav a{
+color:#ccc;
+font-size:.9rem;
+text-decoration:none;
+}
+
+nav a:hover{
+color:#fff;
+}
+
+@media (max-width:600px){
+
+.menu-toggle{
+display:block;
+}
+
+nav{
+display:none;
+flex-direction:column;
+width:100%;
+background:#111;
+margin-top:10px;
+padding:10px 0;
+}
+
+nav.active{
+display:flex;
+}
+
+nav a{
+margin:10px 0;
+text-align:center;
+}
+
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:60px 20px 20px;
+}
+
+.hero h1{
+font-size:2.5rem;
+font-weight:800;
+}
+
+.back{
+margin-top:10px;
+}
+
+.back a{
+color:#aaa;
+text-decoration:none;
+}
+
+.back a:hover{
+color:#fff;
+}
+
+/* MASONRY GALLERY */
+
+.gallery{
+column-count:3;
+column-gap:15px;
+max-width:1300px;
+margin:auto;
+padding:40px;
+}
+
+.gallery a{
+display:block;
+margin-bottom:15px;
+break-inside:avoid;
+}
+
+.gallery img{
+width:100%;
+height:auto;
+border-radius:6px;
+transition:transform .25s, opacity .3s;
+opacity:0;
+}
+
+.gallery img.loaded{
+opacity:1;
+}
+
+.gallery img:hover{
+transform:scale(1.02);
+}
+
+@media (max-width:900px){
+.gallery{
+column-count:2;
+}
+}
+
+@media (max-width:600px){
+.gallery{
+column-count:1;
+}
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:30px;
+color:#666;
+font-size:.9rem;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<a href="index.html" class="logo">
+<img src="logo.png">
+Alex Sklenár
+</a>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<nav id="main-nav">
+<a href="index.html#portfolio">Portfólio</a>
+<a href="index.html#contact">Kontakt</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>Zatah</h1>
+
+<div class="back">
+<a href="concerts.html">← Späť na koncerty</a>
+</div>
+
+</section>
+
+<section id="gallery" class="gallery"></section>
+
+<footer>
+© <script>document.write(new Date().getFullYear())</script> Alex Sklenár. All rights reserved.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.min.js"></script>
+
+<script>
+
+function toggleMenu(){
+const nav = document.getElementById('main-nav')
+nav.classList.toggle('active')
+}
+
+const gallery = document.getElementById("gallery")
+
+const imageCount = 34
+
+for(let i=1;i<=imageCount;i++){
+
+const link = document.createElement("a")
+link.href = `photos/concerts/zatah/photo${i}.jpg`
+
+const img = document.createElement("img")
+img.src = `photos/concerts/zatah/photo${i}.jpg`
+img.loading="lazy"
+
+img.onload=()=>img.classList.add("loaded")
+
+link.appendChild(img)
+gallery.appendChild(link)
+
+}
+
+lightGallery(document.getElementById('gallery'))
+
+</script>
+
+</body>
+</html>
+
